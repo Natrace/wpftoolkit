@@ -1,3 +1,14 @@
+#版本说明
+
+	此版本解决的问题：
+		Xceed.Wpf.AvalonDock中嵌套ActiveX(.ocx)控件，当floating标签时，ActiveX控件被AvalonDock覆盖
+	[CSDN博文]https://blog.csdn.net/natrace/article/details/103915296?spm=1001.2014.3001.5501
+##版本更新记录
+	所有更改均基于 xceedsoftware/wpftoolkit 的 v3.4.0（**June 27, 2018** ）
+	1、删除Net35源码，不维护
+	
+
+
 # Extended WPF Toolkit™
 
 Extended WPF Toolkit™ by [Xceed](https://xceed.com) is the number one collection of WPF controls, components and utilities for creating next generation Windows applications. Use it to build professional looking, modern, and easy to use WPF applications. It has been downloaded more than 1 million times here, on Codeplex, and on [NuGet](http://www.nuget.org/packages/Extended.Wpf.Toolkit/).
