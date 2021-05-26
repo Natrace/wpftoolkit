@@ -23,8 +23,13 @@ namespace Xceed.Wpf.AvalonDock.Controls
   {
     public static Point PointToScreenDPI( this Visual visual, Point pt )
     {
-      Point resultPt = visual.PointToScreen( pt );
-      return TransformToDeviceDPI( visual, resultPt );
+        //modify by wwj 2018-10-08
+        if (PresentationSource.FromVisual(visual) != null)
+        {
+            Point resultPt = visual.PointToScreen(pt);
+            return TransformToDeviceDPI(visual, resultPt);
+        }
+        return new Point(-2000, -2000);
     }
 
     public static Point PointToScreenDPIWithoutFlowDirection( this FrameworkElement element, Point point )

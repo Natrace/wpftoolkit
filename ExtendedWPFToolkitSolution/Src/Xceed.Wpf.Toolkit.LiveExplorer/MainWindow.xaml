@@ -24,7 +24,7 @@
         Icon="App.ico"
         Title="Toolkit Plus for WPF - LiveExplorer"
         Height="778"
-        Width="1300">
+        Width="1300" MouseLeftButtonDown ="Window_MouseLeftButtonDown">
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>

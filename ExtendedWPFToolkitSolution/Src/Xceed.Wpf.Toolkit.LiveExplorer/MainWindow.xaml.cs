@@ -41,6 +41,7 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer
   {
     private const string toolkitAssembly = "Xceed.Wpf.Toolkit.LiveExplorer";
 
+    public static bool m_bCanDragMove = true;
     public MainWindow()
     {
       InitializeComponent();
@@ -146,6 +147,12 @@ namespace Xceed.Wpf.Toolkit.LiveExplorer
     }
 
     #endregion
+
+    private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        if(m_bCanDragMove)
+            this.DragMove();
+    }
 
   }
 }

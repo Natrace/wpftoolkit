@@ -2,12 +2,13 @@
 
 此版本解决的问题：
     Xceed.Wpf.AvalonDock中嵌套ActiveX(.ocx)控件，当floating标签时，ActiveX控件会被AvalonDock覆盖。
-    [CSDN博文](https://blog.csdn.net/natrace/article/details/103915296?spm=1001.2014.3001.5501).
+	
+[CSDN博文](https://blog.csdn.net/natrace/article/details/103915296).
 
 ## 版本更新记录
 
 所有更改均基于 xceedsoftware/wpftoolkit 的 v3.4.0（**June 27, 2018** ）
-	
+
 1、删除Net35源码，不维护
 	
 

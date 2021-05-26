@@ -118,66 +118,66 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Anchorable_AutoHide" xml:space="preserve">
-    <value>Auto Hide</value>
+    <value>自动隐藏</value>
   </data>
   <data name="Anchorable_BtnAutoHide_Hint" xml:space="preserve">
-    <value>Auto Hide</value>
+    <value>自动隐藏</value>
   </data>
   <data name="Anchorable_BtnClose_Hint" xml:space="preserve">
-    <value>Hide</value>
+    <value>隐藏</value>
   </data>
   <data name="Anchorable_CxMenu_Hint" xml:space="preserve">
-    <value>Window Position</value>
+    <value>窗口位置</value>
   </data>
   <data name="Anchorable_Dock" xml:space="preserve">
-    <value>Dock</value>
+    <value>停靠</value>
   </data>
   <data name="Anchorable_DockAsDocument" xml:space="preserve">
-    <value>Dock as Tabbed Document</value>
+    <value>停靠成标签式文档</value>
   </data>
   <data name="Anchorable_Float" xml:space="preserve">
-    <value>Float</value>
+    <value>浮动</value>
   </data>
   <data name="Anchorable_Hide" xml:space="preserve">
-    <value>Hide</value>
+    <value>隐藏</value>
   </data>
   <data name="Document_BtnPinned_Hint" xml:space="preserve">
-    <value>Toggle Pin status</value>
+    <value>切换引脚状态</value>
   </data>
   <data name="Document_Close" xml:space="preserve">
-    <value>Close</value>
+    <value>关闭</value>
   </data>
   <data name="Document_CloseAll" xml:space="preserve">
-    <value>Close All</value>
+    <value>关闭所有</value>
   </data>
   <data name="Document_CloseAllButThis" xml:space="preserve">
-    <value>Close All But This</value>
+    <value>除此之外全部关闭</value>
   </data>
   <data name="Document_CxMenu_Hint" xml:space="preserve">
-    <value>Window Position</value>
+    <value>窗口位置</value>
   </data>
   <data name="Document_DockAsDocument" xml:space="preserve">
-    <value>Dock as Tabbed Document</value>
+    <value>停靠成标签式文档</value>
   </data>
   <data name="Document_Float" xml:space="preserve">
-    <value>Float</value>
+    <value>浮动</value>
   </data>
   <data name="Document_MoveToNextTabGroup" xml:space="preserve">
-    <value>Move To Next Tab Group</value>
+    <value>移到下一标签组</value>
   </data>
   <data name="Document_MoveToPreviousTabGroup" xml:space="preserve">
-    <value>Move To Previous Tab Group</value>
+    <value>移到上一标签组</value>
   </data>
   <data name="Document_NewHorizontalTabGroup" xml:space="preserve">
-    <value>New Horizontal Tab Group</value>
+    <value>新建水平标签组</value>
   </data>
   <data name="Document_NewVerticalTabGroup" xml:space="preserve">
-    <value>New Vertical Tab Group</value>
+    <value>新建垂直标签组</value>
   </data>
   <data name="Window_Maximize" xml:space="preserve">
-    <value>Maximize</value>
+    <value>最大化</value>
   </data>
   <data name="Window_Restore" xml:space="preserve">
-    <value>Restore</value>
+    <value>恢复</value>
   </data>
 </root>

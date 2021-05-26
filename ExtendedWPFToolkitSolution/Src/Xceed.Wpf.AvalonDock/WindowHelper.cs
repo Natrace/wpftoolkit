@@ -21,8 +21,10 @@ using System.Windows.Interop;
 
 namespace Xceed.Wpf.AvalonDock
 {
-  static class WindowHelper
+  public static class WindowHelper
   {
+
+    public static Window m_FloatingWinParent = null; //add by wwj 2018-09-19,预设一个父窗体，使其后的window都为此窗体的子窗体
     public static bool IsAttachedToPresentationSource( this Visual element )
     {
       return PresentationSource.FromVisual( element as Visual ) != null;
@@ -30,15 +32,23 @@ namespace Xceed.Wpf.AvalonDock
 
     public static void SetParentToMainWindowOf( this Window window, Visual element )
     {
-      var wndParent = Window.GetWindow( element );
-      if( wndParent != null )
-        window.Owner = wndParent;
-      else
-      {
-        IntPtr parentHwnd;
-        if( GetParentWindowHandle( element, out parentHwnd ) )
-          Win32Helper.SetOwner( new WindowInteropHelper( window ).Handle, parentHwnd );
-      }
+        if (m_FloatingWinParent != null)
+        {
+            window.Owner = m_FloatingWinParent;
+        }
+        else
+        {
+            var wndParent = Window.GetWindow(element);
+            if (wndParent != null)
+                window.Owner = wndParent;
+            else
+            {
+                IntPtr parentHwnd;
+                if (GetParentWindowHandle(element, out parentHwnd))
+                    Win32Helper.SetOwner(new WindowInteropHelper(window).Handle, parentHwnd);
+            }
+        }
+      
     }
 
     public static IntPtr GetParentWindowHandle( this Window window )

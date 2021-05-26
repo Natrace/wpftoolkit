@@ -30,6 +30,7 @@ using System.Collections.Specialized;
 using System.Windows.Data;
 using System.Windows.Threading;
 using Xceed.Wpf.AvalonDock.Themes;
+using System.Diagnostics;
 
 namespace Xceed.Wpf.AvalonDock
 {
@@ -2217,8 +2218,10 @@ namespace Xceed.Wpf.AvalonDock
       //fwc.Owner = Window.GetWindow(this);
       //fwc.SetParentToMainWindowOf(this);
 
-
-      _fwList.Add( fwc );
+      _fwList.Add(fwc);
+      //add by wwj 2018-09-19
+      if (LayoutChanged != null)
+          LayoutChanged(this, EventArgs.Empty);
 
       Layout.CollectGarbage();
 
@@ -2321,17 +2324,36 @@ namespace Xceed.Wpf.AvalonDock
 
       fwc.AttachDrag();
       fwc.Show();
+      //add by wwj 2018-09-19
+      if (LayoutChanged != null)
+          LayoutChanged(this, EventArgs.Empty);
 
     }
 
     internal IEnumerable<LayoutFloatingWindowControl> GetFloatingWindowsByZOrder()
     {
-      var parentWindow = Window.GetWindow( this );
+      /*var parentWindow = Window.GetWindow( this );
 
       if( parentWindow == null )
         yield break;
 
-      IntPtr windowParentHanlde = new WindowInteropHelper( parentWindow ).Handle;
+      IntPtr windowParentHanlde = new WindowInteropHelper( parentWindow ).Handle;*/
+        
+        IntPtr windowParentHanlde;
+        var parentWindow = Window.GetWindow( this );
+        if (parentWindow != null)
+        {
+            windowParentHanlde = new WindowInteropHelper(parentWindow).Handle;
+        }
+        else
+        {
+            var mainProcess = Process.GetCurrentProcess();
+            if (mainProcess == null)
+                yield break;
+
+            windowParentHanlde = mainProcess.MainWindowHandle;
+        }
+
 
       IntPtr currentHandle = Win32Helper.GetWindow( windowParentHanlde, ( uint )Win32Helper.GetWindow_Cmd.GW_HWNDFIRST );
       while( currentHandle != IntPtr.Zero )
@@ -2499,7 +2521,8 @@ namespace Xceed.Wpf.AvalonDock
           BottomSidePanel = CreateUIElementForModel( Layout.BottomSide ) as LayoutAnchorSideControl;
         }
 
-        SetupAutoHideWindow();
+        //delete by wwj 2018-10-09,在win7上崩溃
+        //SetupAutoHideWindow();
 
         //load windows not already loaded!
         foreach( var fw in Layout.FloatingWindows.Where( fw => !_fwList.Any( fwc => fwc.Model == fw ) ) )
@@ -2509,6 +2532,9 @@ namespace Xceed.Wpf.AvalonDock
         if( IsVisible )
           CreateOverlayWindow();
         FocusElementManager.SetupFocusManagement( this );
+        if (LayoutChanged != null)
+            LayoutChanged(this, EventArgs.Empty);
+
       }
     }
 
@@ -2522,16 +2548,18 @@ namespace Xceed.Wpf.AvalonDock
           _autoHideWindowManager.HideAutoWindow();
         }
 
-        if( AutoHideWindow != null )
-          AutoHideWindow.Dispose();
+        //delete by wwj 2018-10-09,在win7上崩溃 
+        //if( AutoHideWindow != null )
+          //AutoHideWindow.Dispose();
 
-        foreach( var fw in _fwList.ToArray() )
-        {
-          //fw.Owner = null;
-          fw.SetParentWindowToNull();
-          fw.KeepContentVisibleOnClose = true;
-          fw.Close();
-        }
+        //delete by wwj 2018-09-19,Unload时不释放浮动的窗体。需在dockingManger.parent的closing事件中释放
+        //foreach( var fw in _fwList.ToArray() )
+        //{ 
+        //  //fw.Owner = null;
+        //  fw.SetParentWindowToNull();
+        //  fw.KeepContentVisibleOnClose = true;
+        //  fw.Close();
+        //}
 
         DestroyOverlayWindow();
         FocusElementManager.FinalizeFocusManagement( this );
