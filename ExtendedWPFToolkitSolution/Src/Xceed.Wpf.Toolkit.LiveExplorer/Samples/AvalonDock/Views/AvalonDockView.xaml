@@ -20,7 +20,7 @@
                 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                 xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
                 xmlns:s="clr-namespace:System;assembly=mscorlib"
-                Title="AvalonDock">
+                Title="AvalonDock" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="502">
   <local:DemoView.Description>
     <Paragraph FontSize="14"
                FontFamily="Segoe">
@@ -40,128 +40,74 @@
                Style="{StaticResource Header}" />
 
     <StackPanel Grid.Row="2">
-      <xcad:DockingManager x:Name="_dockingManager"
-                           MaxHeight="395"
-                           AllowMixedOrientation="True"
-                           BorderBrush="Black"
-                           BorderThickness="1">
-        <xcad:DockingManager.DocumentHeaderTemplate>
-          <DataTemplate>
-            <StackPanel Orientation="Horizontal">
-              <Image Source="{Binding IconSource}"
-                     Margin="0,0,4,0" />
-              <TextBlock Text="{Binding Title}" />
-            </StackPanel>
-          </DataTemplate>
-        </xcad:DockingManager.DocumentHeaderTemplate>
-        <xcad:LayoutRoot x:Name="_layoutRoot">
-          <xcad:LayoutPanel Orientation="Horizontal">
-            <xcad:LayoutAnchorablePane DockWidth="200">
-              <xcad:LayoutAnchorable ContentId="properties"
-                                     Title="Properties"
-                                     CanHide="False"
-                                     CanClose="False"
-                                     AutoHideWidth="240"
-                                     IconSource="../Images/property-blue.png">
-                <xctk:PropertyGrid NameColumnWidth="110"
-                                   SelectedObject="{Binding ElementName=_layoutRoot, Path=LastFocusedDocument.Content}"
-                                   AutoGenerateProperties="False">
-                  <xctk:PropertyGrid.PropertyDefinitions>
-                    <xctk:PropertyDefinition TargetProperties="Background" />
-                    <xctk:PropertyDefinition TargetProperties="BorderBrush" />
-                    <xctk:PropertyDefinition TargetProperties="BorderThickness" />
-                    <xctk:PropertyDefinition TargetProperties="FontSize" />
-                    <xctk:PropertyDefinition TargetProperties="FontStyle" />
-                    <xctk:PropertyDefinition TargetProperties="Width" />
-                    <xctk:PropertyDefinition TargetProperties="Height" />
-                  </xctk:PropertyGrid.PropertyDefinitions>
-                </xctk:PropertyGrid>
-              </xcad:LayoutAnchorable>
-            </xcad:LayoutAnchorablePane>
-            <xcad:LayoutDocumentPaneGroup>
-              <xcad:LayoutDocumentPane>
-                <xcad:LayoutDocument ContentId="document1"
-                                     Title="Document 1"
-                                     IconSource="../Images/document.png">
-                  <Button Content="Document 1 Content"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center" />
-                </xcad:LayoutDocument>
-                <xcad:LayoutDocument ContentId="document2"
-                                     Title="Document 2"
-                                     IconSource="../Images/document.png">
-                  <TextBox Text="Document 2 Content"
-                           AcceptsReturn="True" />
-                </xcad:LayoutDocument>
-              </xcad:LayoutDocumentPane>
-            </xcad:LayoutDocumentPaneGroup >
-            <xcad:LayoutAnchorablePaneGroup DockWidth="125">
-              <xcad:LayoutAnchorablePane>
-                <xcad:LayoutAnchorable ContentId="alarms"
-                                       Title="Alarms"
-                                       IconSource="../Images/alarm-clock-blue.png"
-                                       CanClose="True">
-                  <ListBox>
-                    <s:String>Alarm 1</s:String>
-                    <s:String>Alarm 2</s:String>
-                    <s:String>Alarm 3</s:String>
-                  </ListBox>
-                </xcad:LayoutAnchorable>
-                <xcad:LayoutAnchorable ContentId="journal"
-                                       Title="Journal">
-                  <RichTextBox>
-                    <FlowDocument>
-                      <Paragraph FontSize="14"
-                                 FontFamily="Segoe">
-                        This is the content of the Journal Pane.
-                        <LineBreak />
-                        A
-                        <Bold>RichTextBox</Bold> has been added here
-                      </Paragraph>
-                    </FlowDocument>
-                  </RichTextBox>
-                </xcad:LayoutAnchorable>
-              </xcad:LayoutAnchorablePane>
-            </xcad:LayoutAnchorablePaneGroup>
-          </xcad:LayoutPanel>
+            <!--The Main DockingManager-->
+            <xcad:DockingManager x:Name="_dockingManager" Grid.Column="1" AllowMixedOrientation="True"  BorderThickness="0"
+                                  Width="Auto" MinHeight="200" VerticalAlignment="Stretch" Height="427">
+                <xcad:LayoutRoot x:Name="_layoutRoot">
+                    <xcad:LayoutPanel Orientation="Horizontal">
+                        <xcad:LayoutDocumentPaneGroup>
+                            <xcad:LayoutDocumentPane x:Name="EncDocumentPane">
+                                <xcad:LayoutDocument ContentId="ID_ENC_MAP" x:Name="EncDocument" Title="ENC_MAP  "  
+                                                 >
+                                    <Button x:Name="EncWinTarget" Width="100" Height="100" >
+                                    </Button>
+                                </xcad:LayoutDocument>
+                            </xcad:LayoutDocumentPane>
+                            <xcad:LayoutDocumentPane>
+                                <xcad:LayoutDocument ContentId="RightMainRealTimeWarning" x:Name="WarnningDocument" Title="RealTimeWarning"  >
+                                    <Grid>
+                                        <Grid VerticalAlignment="Top" Height="40">
+                                            <Button Content="button1" Width="72" Margin="5,5,0,5" HorizontalAlignment="Left"  ></Button>
+                                            <Button Content="button2" Width="72" Margin="85,5,0,5" HorizontalAlignment="Left"  ></Button>
+                                            <Button Content="button3" Width="72" Margin="175,5,0,5" HorizontalAlignment="Left" ></Button>
+                                            <Button Content="button4" Width="72" Margin="260,5,0,5" HorizontalAlignment="Left" ></Button>
+                                        </Grid>  
+                                        <!--The Child DockingManager In Main DockingManager-->
+                                        <xcad:DockingManager Margin="0,40,0,0"  AllowMixedOrientation="True" BorderBrush="Black" BorderThickness="0" Background="Transparent">
+                                            <xcad:LayoutRoot>
+                                                <xcad:LayoutPanel Orientation="Horizontal">
+                                                    <xcad:LayoutDocumentPaneGroup Orientation="Vertical">
+                                                        <xcad:LayoutDocumentPane>
+                                                            <xcad:LayoutDocument ContentId="innerDocSendWarn" Title="SendWarn(0)"  >
+                                                                <TextBox Text="Document 3 Content" AcceptsReturn="True" />
+                                                            </xcad:LayoutDocument>
+                                                            <xcad:LayoutDocument ContentId="innerDocWarnWithNoHandle" Title="WarnWithNoHandle(0)" >
+                                                                <TextBox Text="Document 4 Content" AcceptsReturn="True" />
+                                                            </xcad:LayoutDocument>
+                                                        </xcad:LayoutDocumentPane>
 
-          <xcad:LayoutRoot.LeftSide>
-            <xcad:LayoutAnchorSide>
-              <xcad:LayoutAnchorGroup>
-                <xcad:LayoutAnchorable Title="Agenda"
-                                       ContentId="agenda"
-                                       IconSource="../Images/address-book-open.png">
-                  <TextBlock Text="Agenda Content"
-                             Margin="10"
-                             FontSize="18"
-                             FontWeight="Black"
-                             TextWrapping="Wrap" />
-                </xcad:LayoutAnchorable>
-                <xcad:LayoutAnchorable Title="Contacts"
-                                       ContentId="contacts"
-                                       IconSource="../Images/address-book--pencil.png">
-                  <TextBlock Text="Contacts Content"
-                             Margin="10"
-                             FontSize="18"
-                             FontWeight="Black"
-                             TextWrapping="Wrap" />
-                </xcad:LayoutAnchorable>
-              </xcad:LayoutAnchorGroup>
-            </xcad:LayoutAnchorSide>
-          </xcad:LayoutRoot.LeftSide>
-        </xcad:LayoutRoot>
-      </xcad:DockingManager>
+                                                        <xcad:LayoutDocumentPane>
+                                                            <xcad:LayoutDocument ContentId="innerDocPreWarn" Title="PreWarn(0)">
+                                                                <TextBox Text="Document 5 Content" AcceptsReturn="True" />
+                                                            </xcad:LayoutDocument>
+                                                        </xcad:LayoutDocumentPane>
 
-      <StackPanel Orientation="Horizontal"
+                                                    </xcad:LayoutDocumentPaneGroup>
+                                                </xcad:LayoutPanel>
+                                            </xcad:LayoutRoot>
+                                        </xcad:DockingManager>
+
+                                    </Grid>
+                                </xcad:LayoutDocument>
+
+                            </xcad:LayoutDocumentPane>
+                        </xcad:LayoutDocumentPaneGroup>
+                    </xcad:LayoutPanel>
+
+                </xcad:LayoutRoot>
+            </xcad:DockingManager>
+
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
                   HorizontalAlignment="Center">
-        <Button Content="Save AvalonDock"
-                Margin="5"
-                Padding="5"
-                Click="SaveButton_Click" />
-        <Button Content="Load AvalonDock"
-                Margin="5"
-                Padding="5"
-                Click="LoadButton_Click" />
+            <Button Content="Save AvalonDock"
+                    Margin="5"
+                    Padding="5"
+                    Click="SaveButton_Click" />
+            <Button Content="Load AvalonDock"
+                    Margin="5"
+                    Padding="5"
+                    Click="LoadButton_Click" />
       </StackPanel>
     </StackPanel>
   </Grid>

@@ -10,6 +10,10 @@
 所有更改均基于 xceedsoftware/wpftoolkit 的 v3.4.0（**June 27, 2018** ）
 
 1、删除Net35源码，不维护
+
+2、AvalonDock组件修改
+
+3、部分样式更改
 	
 
 
