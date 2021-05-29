@@ -2,8 +2,9 @@
 
 此版本解决的问题：
     Xceed.Wpf.AvalonDock中嵌套ActiveX(.ocx)控件，当floating标签时，ActiveX控件会被AvalonDock覆盖。
+
 	
-[CSDN博文](https://blog.csdn.net/natrace/article/details/103915296).
+使用说明见：[CSDN博文](https://blog.csdn.net/natrace/article/details/103915296).
 
 ## 版本更新记录
 
@@ -16,7 +17,7 @@
 3、部分样式更改
 	
 
-
+---
 
 # Extended WPF Toolkit™
 
